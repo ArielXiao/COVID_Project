@@ -1,5 +1,5 @@
 -- COVID Data Exploration
- --Death Table Exploration
+--Death Table Exploration
 SELECT
  *
 FROM
@@ -9,7 +9,9 @@ WHERE
 ORDER BY
  3,
  4
- --Vaccination Table Exploration
+ 
+ 
+--Vaccination Table Exploration
 SELECT
  *
 FROM
@@ -19,7 +21,9 @@ WHERE
 ORDER BY
  3,
  4
- --Select specific data to start with
+ 
+ 
+--Select specific data to start with
 SELECT
  location,
  date,
@@ -35,8 +39,10 @@ WHERE
 ORDER BY
  1,
  2
- --Select the likelihood to death if got COVID in each country, eg. The US
- --Total Deaths / Total Cases
+ 
+ 
+--Select the likelihood to death if got COVID in each country, eg. The US
+--Total Deaths / Total Cases
 SELECT
  location,
  date,
@@ -51,8 +57,10 @@ WHERE
 ORDER BY
  1,
  2
- --Select the percentage of poeple infected to COVID in each country, eg. The US
- --Total Cases / Population
+ 
+ 
+--Select the percentage of poeple infected to COVID in each country, eg. The US
+--Total Cases / Population
 SELECT
  location,
  date,
@@ -67,7 +75,9 @@ WHERE
 ORDER BY
  1,
  2
- --Select the highest infection rate compared to population of each country
+ 
+ 
+--Select the highest infection rate compared to population of each country
 SELECT
  location,
  population,
@@ -80,7 +90,9 @@ GROUP BY
  population
 ORDER BY
  PercentPopulationInfected DESC
- --Select the highest death count per population of each country
+ 
+ 
+--Select the highest death count per population of each country
 SELECT
  location,
  population,
@@ -92,8 +104,10 @@ GROUP BY
  population
 ORDER BY
  TotalDeathCount DESC
- --BREAKING DOWN TO CONTINENT
- --Select the highest death count per population of each continent
+ 
+ 
+--BREAKING DOWN TO CONTINENT
+--Select the highest death count per population of each continent
 SELECT
  continent,
  MAX(CAST(total_deaths AS int)) AS TotalDeathCount
@@ -105,8 +119,10 @@ GROUP BY
  continent
 ORDER BY
  TotalDeathCount
- --GLOBAL NUMBERS
- --Select total cases and deaths and deathrate percentage all over the world
+ 
+ 
+--GLOBAL NUMBERS
+--Select total cases and deaths and deathrate percentage all over the world
 SELECT
  SUM(new_cases) AS TotalCases,
  SUM(new_deaths) AS TotalDeaths,
@@ -117,7 +133,9 @@ WHERE
  continent IS NOT NULL
 ORDER BY
  Death_Percentage
- --Show Percentage of Population that has recieved at least one Covid Vaccine
+ 
+ 
+--Show Percentage of Population that has recieved at least one Covid Vaccine
 SELECT
  d.continent,
  d.location,
@@ -136,7 +154,9 @@ WHERE
 ORDER BY
  2,
  3
- --Using CTE
+ 
+ 
+	--Using CTE
 WITH
  PopvsVac AS(
  SELECT
@@ -162,7 +182,9 @@ SELECT
  (RollingPeopleVaccinated/population)*100 AS VAC_PERCENTAGE
 FROM
  PopvsVac
- --Using TEMP TABLE to perform windown function in previous query
+ 
+ 
+--Using TEMP TABLE to perform windown function in previous query
 CREATE TABLE
  COVID_data.PercentPopulationVaccinated AS
 SELECT
